@@ -7,23 +7,32 @@ import org.junit.Test;
 
 import com.libedi.myproject.designpattern_duck.duck.Duck;
 import com.libedi.myproject.designpattern_duck.duck.MallardDuck;
+import com.libedi.myproject.designpattern_duck.duck.ModelDuck;
+import com.libedi.myproject.designpattern_duck.fly.FlyRocketPowered;
 
 public class TestDuck {
-	private Duck duck;
+	private Duck mallard;
+	private Duck model;
 	
 	@Before
 	public void setUp() throws Exception{
-		this.duck = new MallardDuck();
+		this.mallard = new MallardDuck();
+		this.model = new ModelDuck();
 	}
 	
 	@Test
 	public void testMockCreation() throws Exception{
-		assertNotNull(this.duck);
+		assertNotNull(this.mallard);
+		assertNotNull(this.model);
 	}
 	
 	@Test
 	public void testMallardDuck() throws Exception{
-		this.duck.performFly();
-		this.duck.performQuack();
+		this.mallard.performFly();
+		this.mallard.performQuack();
+		
+		this.model.performFly();
+		this.model.setFlyBehavior(new FlyRocketPowered());
+		this.model.performFly();
 	}
 }
